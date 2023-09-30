@@ -41,8 +41,8 @@ object Main
       var humans: List[Human] = List()
 
       def addHuman(name: String, age: Int, address: String): Unit = {
-        val newAddress = Address(address, "") // Create an Address object with the provided address string
-        val newHuman = Human(name, age, newAddress) // Pass the Address object to the Human constructor
+        val newAddress = Address(address, "")
+        val newHuman = Human(name, age, newAddress)
         humans = humans :+ newHuman
       }
 
