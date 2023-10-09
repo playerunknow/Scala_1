@@ -1,7 +1,29 @@
+case class Address(city: String, region: String)
+
+class Student(id: Int, name: String, age: Int, address: Address)
+  extends Human(name, age, address)
+  {
+    def displayInfo: String =
+    {
+      s"ID: $id, Name: $name, Age: $age, Address: ${address.city}, ${address.region}, Adult: $isAdult"
+    }
+  }
+
+case class Human(name: String, age: Int, address: Address)
+{
+  def isAdult: Boolean = age >= 18
+  def greet: String = s"Hello, my name is $name."
+}
+
 object Main
 {
   def main(args: Array[String]): Unit =
   {
+
+    val address = Address("City", "Region")
+    val student = new Student(1, "Oleg", 20, address)
+    println(student.displayInfo)
+
     val list = List(4, -8, 1, 9, 10, 3, -6, 18, 2, -5)
 
     println("Max: " + list.max)
@@ -23,13 +45,7 @@ object Main
 
     //Task2
 
-    case class Address(city: String, region: String)
 
-    case class Human(name: String, age: Int, address: Address)
-    {
-      def isAdult: Boolean = age >= 18
-      def greet: String = s"Hello, my name is $name."
-    }
 
     val namePeople = Human("Mykhail", 19, Address("Kherson", "Kherson Region"))
     println(s"Name: ${namePeople.name}\nAge: ${namePeople.age}\nAddress: ${namePeople.address.city}, ${namePeople.address.region}")
@@ -37,7 +53,8 @@ object Main
 
     //task 3
 
-    class ListHuman {
+    class ListHuman
+    {
       var humans: List[Human] = List()
 
       def addHuman(name: String, age: Int, address: String): Unit = {
@@ -82,7 +99,9 @@ object Main
     val filteredHumans = humanList.filterByAge(25)
     println("\nFiltered List (age >= 25):")
     filteredHumans.foreach(human => println(s"Name: ${human.name}, Age: ${human.age}, Address: ${human.address}"))
+
   }
+
 
   def findElement(list: List[Int], target: Int): Option[Int] =
   {
